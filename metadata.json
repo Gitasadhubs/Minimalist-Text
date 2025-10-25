@@ -1,0 +1,5 @@
+{
+  "name": "Minimalist Text AI",
+  "description": "A stark, minimalist text-based interface to interact with an AI model. The design is intentionally unstyled to focus purely on the text interaction, providing a raw, direct-to-the-model experience.",
+  "requestFramePermissions": []
+}
