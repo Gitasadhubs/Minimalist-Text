@@ -1,22 +1,18 @@
 {
-  "name": "minimalist-text-ai",
+  "name": "minimalist-text-ai-deployable",
+  "version": "1.0.0",
+  "description": "A deployable version of the minimalist text AI app.",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "echo 'Run a local static server to serve index.html'",
+    "build": "echo 'No build step needed for static files'"
   },
   "dependencies": {
-    "react-dom": "^19.2.0",
-    "@google/genai": "^1.27.0",
-    "react": "^19.2.0"
+    "@google/genai": "^1.27.0"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "typescript": "^5.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
   }
 }

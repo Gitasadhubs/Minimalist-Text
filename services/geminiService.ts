@@ -1,25 +1,25 @@
-
-import { GoogleGenAI } from "@google/genai";
-
-const MODEL_NAME = 'gemini-2.5-flash';
-
 export async function runQuery(prompt: string): Promise<string> {
-  if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set.");
-  }
-
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    const response = await ai.models.generateContent({
-      model: MODEL_NAME,
-      contents: prompt,
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt }),
     });
-    return response.text;
-  } catch (error) {
-    console.error("Gemini API error:", error);
-    if (error instanceof Error) {
-        return `Error: ${error.message}`;
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response' }));
+      throw new Error(errorData.error || `Request failed with status ${response.status}`);
     }
-    return "An unknown error occurred.";
+
+    const data = await response.json();
+    return data.text;
+  } catch (error) {
+    console.error("Frontend service error:", error);
+    if (error instanceof Error) {
+      return `Error: ${error.message}`;
+    }
+    return "An unknown error occurred while contacting the server.";
   }
 }
